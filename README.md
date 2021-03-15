@@ -27,3 +27,23 @@ secretToken - токен Тинькофф Инвестиций
 ```
 docker build -t termitkin/invest_bot .
 ```
+
+Команда для запуска контейнера с ботом:
+
+```
+sudo docker run --rm -d -p 3005:3002 --name invest_bot -e PORT=3002 -e APP_NAME=Invest_bot -e secretToken=TINKOFF_SECRET_TOKEN -e BOT_TOKEN=TELEGRAM_BOT_TOKEN termitkin/invest_bot
+```
+
+Блок относящийся к боту в nginx:
+
+```
+# Invest Bot Docker
+location ^~ /bots/invest_bot/TELEGRAM_BOT_TOKEN {
+    proxy_pass http://0.0.0.0:3005/;
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection 'upgrade';
+    proxy_set_header Host $host;
+    proxy_cache_bypass $http_upgrade;
+}
+```
