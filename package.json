@@ -1,0 +1,25 @@
+{
+  "name": "invest_bot",
+  "version": "1.0.0",
+  "description": "Получение некоторых данных с биржи через Тинькофф Инвестиции OpenAPI",
+  "main": "index.js",
+  "scripts": {},
+  "keywords": [],
+  "author": "termitkin",
+  "license": "ISC",
+  "dependencies": {
+    "@tinkoff/invest-openapi-js-sdk": "1.2.16",
+    "axios": "0.21.1",
+    "express": "4.17.1"
+  },
+  "devDependencies": {
+    "eslint": "7.21.0",
+    "eslint-config-airbnb": "18.2.1",
+    "eslint-plugin-import": "2.22.1",
+    "eslint-plugin-jest": "^24.2.1",
+    "eslint-plugin-jsx-a11y": "6.4.1",
+    "eslint-plugin-react": "7.22.0",
+    "eslint-plugin-react-hooks": "4.2.0",
+    "prettier": "2.2.1"
+  }
+}
