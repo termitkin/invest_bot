@@ -31,7 +31,7 @@ docker build -t termitkin/invest_bot .
 Команда для запуска контейнера с ботом:
 
 ```
-sudo docker run --rm -d -p 3005:3002 --name invest_bot -e PORT=3002 -e APP_NAME=Invest_bot -e secretToken=TINKOFF_SECRET_TOKEN -e BOT_TOKEN=TELEGRAM_BOT_TOKEN termitkin/invest_bot
+sudo docker run -d -p 3005:3002 --restart unless-stopped --name invest_bot -e PORT=3002 -e APP_NAME=Invest_bot -e secretToken=TINKOFF_SECRET_TOKEN -e BOT_TOKEN=TELEGRAM_BOT_TOKEN termitkin/invest_bot:latest
 ```
 
 Блок относящийся к боту в nginx:
