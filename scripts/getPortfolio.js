@@ -2,7 +2,7 @@ const api = require('./utils/api');
 const currencySigns = require('./utils/CONSTANTS');
 const sortPositionsByYield = require('./utils/sortPositionsByYield');
 
-const getExpectedYield = async () => {
+const getPortfolio = async () => {
   let result = '';
   const { positions } = await api.portfolio();
 
@@ -15,4 +15,4 @@ const getExpectedYield = async () => {
   return result;
 };
 
-module.exports = getExpectedYield;
+module.exports = getPortfolio;

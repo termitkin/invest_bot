@@ -1,7 +1,7 @@
 const express = require('express');
 const getBalance = require('./scripts/getBalance');
 const getCurrency = require('./scripts/getCurrency');
-const getExpectedYield = require('./scripts/getExpectedYield');
+const getPortfolio = require('./scripts/getPortfolio');
 const getHelp = require('./scripts/getHelp');
 const getStockPrice = require('./scripts/getStockPrice');
 const sendMessage = require('./scripts/sendMessage');
@@ -21,12 +21,12 @@ app.post('/', async (req, res) => {
 
     if (chatMessage === '/get_balance') {
       textToSend = `Баланс ${await getBalance()} ₽`;
+    } else if (chatMessage === '/get_portfolio') {
+      textToSend = await getPortfolio();
     } else if (chatMessage === '/get_usd') {
       textToSend = `Цена доллара ${await getCurrency('usd')} ₽`;
     } else if (chatMessage === '/get_eur') {
       textToSend = `Цена евро ${await getCurrency('eur')} ₽`;
-    } else if (chatMessage === '/get_expected_yield') {
-      textToSend = await getExpectedYield();
     } else if (chatMessage === '/start' || chatMessage === '/get_help') {
       textToSend = getHelp();
     } else if (/^\/get_stock_price/.test(chatMessage)) {
