@@ -7,6 +7,7 @@ module.exports = {
   BOT_TOKEN: process.env.BOT_TOKEN,
   PORT: process.env.PORT,
   APP_NAME: process.env.APP_NAME,
+  OWNER_ID: process.env.OWNER_ID,
 
   FIGI_USDRUB: 'BBG0013HGFT4',
   FIGI_EURRUB: 'BBG0013HJJ31',

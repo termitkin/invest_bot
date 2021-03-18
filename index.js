@@ -6,7 +6,7 @@ const getHelp = require('./scripts/getHelp');
 const getStockPrice = require('./scripts/getStockPrice');
 const sendMessage = require('./scripts/sendMessage');
 const currentDate = require('./scripts/utils/currentDate');
-const { APP_NAME, PORT } = require('./scripts/utils/CONSTANTS');
+const { APP_NAME, OWNER_ID, PORT } = require('./scripts/utils/CONSTANTS');
 
 const app = express();
 app.use(express.json());
@@ -18,6 +18,15 @@ app.post('/', async (req, res) => {
     const chatId = req.body.message.chat.id;
     const chatMessage = req.body.message.text.trim();
     let textToSend;
+
+    if (Number.parseInt(OWNER_ID, 10) !== Number.parseInt(req.body.message.from.id, 10)) {
+      await sendMessage('Управлять ботом может только владелец бота', chatId).catch((e) => {
+        res.status(500).send('Что-то пошло не так 🤷‍♂️');
+        console.log(JSON.stringify(e));
+      });
+      res.status(200).send('ok');
+      return;
+    }
 
     if (chatMessage === '/get_balance') {
       textToSend = `Баланс ${await getBalance()} ₽`;
@@ -38,8 +47,8 @@ app.post('/', async (req, res) => {
     }
 
     sendMessage(textToSend, chatId).catch((e) => {
-      res.status(500).send(JSON.stringify(e));
-      console.log(e);
+      res.status(500).send('Что-то пошло не так 🤷‍♂️');
+      console.log(JSON.stringify(e));
     });
   }
   res.status(200).send('ok');
