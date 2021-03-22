@@ -6,10 +6,11 @@
 
 ```
 /get_balance - Узнать баланс (доход за всё время)
+/get_portfolio - Получить ожидаемый доход по всему портфелю
+/get_orders - Получить список активных заявок
 /get_usd - Получить курс доллара
 /get_eur - Получить курс евро
-/get_expected_yield - Получить ожидаемый доход по всему портфелю
-/get_stock_price APPL - Получить последнюю цену бумаги по тикеру
+/get_stock_price %APPL% - Получить последнюю цену бумаги по тикеру
 /get_help - Вывести список всех команд
 ```
 
@@ -32,7 +33,7 @@ docker build -t termitkin/invest_bot .
 Команда для запуска контейнера с ботом:
 
 ```
-sudo docker run -d -p 3005:3002 --restart unless-stopped --name invest_bot -e PORT=3002 -e APP_NAME=Invest_bot -e secretToken=TINKOFF_SECRET_TOKEN -e BOT_TOKEN=TELEGRAM_BOT_TOKEN termitkin/invest_bot:latest
+sudo docker run -d -p 3005:3002 --restart unless-stopped --name invest_bot -e PORT=3002 -e APP_NAME=Invest_bot -e secretToken=TINKOFF_SECRET_TOKEN -e BOT_TOKEN=TELEGRAM_BOT_TOKEN -e OWNER_ID=TELEGRAM_OWNER_ID termitkin/invest_bot:latest
 ```
 
 Блок относящийся к боту в nginx:
