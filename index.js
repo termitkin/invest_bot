@@ -5,6 +5,7 @@ const getPortfolio = require('./scripts/getPortfolio');
 const getHelp = require('./scripts/getHelp');
 const getStockPrice = require('./scripts/getStockPrice');
 const sendMessage = require('./scripts/sendMessage');
+const getOrders = require('./scripts/getOrders');
 const currentDate = require('./scripts/utils/currentDate');
 const { APP_NAME, OWNER_ID, PORT } = require('./scripts/utils/CONSTANTS');
 
@@ -32,6 +33,8 @@ app.post('/', async (req, res) => {
       textToSend = `Баланс ${await getBalance()} ₽`;
     } else if (chatMessage === '/get_portfolio') {
       textToSend = await getPortfolio();
+    } else if (chatMessage === '/get_orders') {
+      textToSend = await getOrders();
     } else if (chatMessage === '/get_usd') {
       textToSend = `Цена доллара ${await getCurrency('usd')} ₽`;
     } else if (chatMessage === '/get_eur') {
