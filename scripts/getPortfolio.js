@@ -3,16 +3,18 @@ const currencySigns = require('./utils/CONSTANTS');
 const sortPositionsByYield = require('./utils/sortPositionsByYield');
 
 const getPortfolio = async () => {
-  let result = '';
+  let textToSend = '';
   const { positions } = await api.portfolio();
 
   const pos = await sortPositionsByYield(positions);
 
   pos.forEach((item) => {
-    result += `${item.name}: ${item.expectedYield.value} ${currencySigns[item.expectedYield.currency]}\n`;
+    textToSend += `${item.ticker} ${item.name}: ${item.expectedYield.value} ${
+      currencySigns[item.expectedYield.currency]
+    }\n`;
   });
 
-  return result;
+  return textToSend;
 };
 
 module.exports = getPortfolio;
