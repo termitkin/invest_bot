@@ -12,6 +12,6 @@ module.exports = {
     'no-console': 'off',
     'operator-linebreak': [2, 'after'],
     'max-len': ['error', { code: 120 }],
-
+    'object-curly-newline': 'off',
   },
 };
