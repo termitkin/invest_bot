@@ -1,5 +1,5 @@
 const api = require('../utils/api');
-const currencySigns = require('../utils/CONSTANTS');
+const currencySigns = require('../utils/dic');
 const sortPositionsByYield = require('../utils/sortPositionsByYield');
 
 const getPortfolio = async () => {
