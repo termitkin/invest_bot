@@ -9,6 +9,7 @@
 /get_portfolio - Получить ожидаемый доход по всему портфелю
 /get_orders - Получить список активных заявок
 /cancel_order %order_id% - Отменить заявку. order_id можно взять из /get_orders
+/place_limit_order %ticker% %count% %sell|buy% %price% - Разместить лимитную заявку. Порядок параметров важен, регистр нет. Пример - /place_limit_order ozon 1 sell 4200
 /get_usd - Получить курс доллара
 /get_eur - Получить курс евро
 /get_stock_price %APPL% - Получить последнюю цену бумаги по тикеру
