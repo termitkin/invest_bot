@@ -8,6 +8,7 @@ const sendMessage = require('./utils/sendMessage');
 const getOrders = require('./components/getOrders');
 const cancelOrder = require('./components/cancelOrder');
 const placeLimitOrder = require('./components/placeLimitOrder');
+const placeMarketOrder = require('./components/placeMarketOrder');
 const currentDate = require('./utils/currentDate');
 const { APP_NAME, OWNER_ID, PORT } = require('./utils/CONSTANTS');
 
@@ -45,6 +46,10 @@ app.post('/', async (req, res) => {
       const limitOrderParams = chatMessage.replace(/\/place_limit_order /, '');
 
       textToSend = await placeLimitOrder(limitOrderParams);
+    } else if (/^\/place_market_order /.test(chatMessage)) {
+      const marketOrderParams = chatMessage.replace(/\/place_market_order /, '');
+
+      textToSend = await placeMarketOrder(marketOrderParams);
     } else if (chatMessage === '/get_usd') {
       textToSend = `Цена доллара ${await getCurrency('usd')} ₽`;
     } else if (chatMessage === '/get_eur') {
