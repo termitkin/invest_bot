@@ -51,9 +51,9 @@ app.post('/', async (req, res) => {
 
       textToSend = await placeMarketOrder(marketOrderParams);
     } else if (chatMessage === '/get_usd') {
-      textToSend = `Цена доллара ${await getCurrency('usd')} ₽`;
+      textToSend = `Цена доллара ${await getCurrency('FIGI_USDRUB')} ₽`;
     } else if (chatMessage === '/get_eur') {
-      textToSend = `Цена евро ${await getCurrency('eur')} ₽`;
+      textToSend = `Цена евро ${await getCurrency('FIGI_EURRUB')} ₽`;
     } else if (chatMessage === '/start' || chatMessage === '/get_help') {
       textToSend = getHelp();
     } else if (/^\/get_stock_price/.test(chatMessage)) {
