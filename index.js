@@ -6,6 +6,7 @@ const getHelp = require('./scripts/getHelp');
 const getStockPrice = require('./scripts/getStockPrice');
 const sendMessage = require('./scripts/sendMessage');
 const getOrders = require('./scripts/getOrders');
+const cancelOrder = require('./scripts/cancelOrder');
 const currentDate = require('./scripts/utils/currentDate');
 const { APP_NAME, OWNER_ID, PORT } = require('./scripts/utils/CONSTANTS');
 
@@ -35,6 +36,10 @@ app.post('/', async (req, res) => {
       textToSend = await getPortfolio();
     } else if (chatMessage === '/get_orders') {
       textToSend = await getOrders();
+    } else if (/^\/cancel_order /.test(chatMessage)) {
+      const orderId = chatMessage.replace(/\/cancel_order /, '');
+
+      textToSend = await cancelOrder(orderId);
     } else if (chatMessage === '/get_usd') {
       textToSend = `Цена доллара ${await getCurrency('usd')} ₽`;
     } else if (chatMessage === '/get_eur') {
