@@ -1,5 +1,5 @@
-const api = require('./utils/api');
-const { FIGI_USDRUB, FIGI_EURRUB } = require('./utils/CONSTANTS');
+const api = require('../utils/api');
+const { FIGI_USDRUB, FIGI_EURRUB } = require('../utils/CONSTANTS');
 
 const getCurrency = async (currency) => {
   if (currency === 'usd') {

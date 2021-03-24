@@ -1,6 +1,6 @@
-const api = require('./utils/api');
-const currencySigns = require('./utils/CONSTANTS');
-const sortPositionsByYield = require('./utils/sortPositionsByYield');
+const api = require('../utils/api');
+const currencySigns = require('../utils/CONSTANTS');
+const sortPositionsByYield = require('../utils/sortPositionsByYield');
 
 const getPortfolio = async () => {
   let textToSend = '';

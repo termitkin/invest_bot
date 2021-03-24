@@ -1,5 +1,5 @@
-const api = require('./utils/api');
-const { FIGI_USDRUB } = require('./utils/CONSTANTS');
+const api = require('../utils/api');
+const { FIGI_USDRUB } = require('../utils/CONSTANTS');
 
 const getBalance = async () => {
   const usd = await api.orderbookGet({ figi: FIGI_USDRUB, depth: 1 });

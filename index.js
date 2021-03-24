@@ -1,15 +1,15 @@
 const express = require('express');
-const getBalance = require('./scripts/getBalance');
-const getCurrency = require('./scripts/getCurrency');
-const getPortfolio = require('./scripts/getPortfolio');
-const getHelp = require('./scripts/getHelp');
-const getStockPrice = require('./scripts/getStockPrice');
-const sendMessage = require('./scripts/sendMessage');
-const getOrders = require('./scripts/getOrders');
-const cancelOrder = require('./scripts/cancelOrder');
-const placeLimitOrder = require('./scripts/placeLimitOrder');
-const currentDate = require('./scripts/utils/currentDate');
-const { APP_NAME, OWNER_ID, PORT } = require('./scripts/utils/CONSTANTS');
+const getBalance = require('./components/getBalance');
+const getCurrency = require('./components/getCurrency');
+const getPortfolio = require('./components/getPortfolio');
+const getHelp = require('./components/getHelp');
+const getStockPrice = require('./components/getStockPrice');
+const sendMessage = require('./utils/sendMessage');
+const getOrders = require('./components/getOrders');
+const cancelOrder = require('./components/cancelOrder');
+const placeLimitOrder = require('./components/placeLimitOrder');
+const currentDate = require('./utils/currentDate');
+const { APP_NAME, OWNER_ID, PORT } = require('./utils/CONSTANTS');
 
 const app = express();
 app.use(express.json());

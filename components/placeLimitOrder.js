@@ -1,5 +1,5 @@
-const api = require('./utils/api');
-const capitalizeFirstLetter = require('./utils/capitalizeFirstLetter');
+const api = require('../utils/api');
+const capitalizeFirstLetter = require('../utils/capitalizeFirstLetter');
 
 const placeLimitOrder = async (limitOrderParams) => {
   const params = limitOrderParams.split(' ');
