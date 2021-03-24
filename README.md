@@ -6,13 +6,13 @@
 
 ```
 /get_balance - Узнать баланс (доход за всё время)
-/get_portfolio - Получить ожидаемый доход по всему портфелю
+/get_portfolio - Получить ожидаемый доход по каждой бумаге в портфеле
 /get_orders - Получить список активных заявок
 /cancel_order %order_id% - Отменить заявку. order_id можно взять из /get_orders
 /place_limit_order %ticker% %count% %sell|buy% %price% - Разместить лимитную заявку. Порядок параметров важен, регистр нет. Пример - /place_limit_order ozon 1 sell 4200
 /place_market_order %ticker% %count% %sell|buy% - Разместить рыночную заявку. Порядок параметров важен, регистр нет. Пример - /place_market_order ozon 1 sell
-/get_usd - Получить курс доллара
-/get_eur - Получить курс евро
+/get_usd - Получить посленюю цену доллара
+/get_eur - Получить посленюю цену евро
 /get_stock_price %APPL% - Получить последнюю цену бумаги по тикеру
 /get_help - Вывести список всех команд
 ```
