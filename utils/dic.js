@@ -23,4 +23,8 @@ module.exports = {
   orderIdNotFound: 'Не могу найти заявку с номером',
   Sell: 'Продано',
   Fill: 'Исполнено',
+  stocks: 'Акции',
+  etfs: 'Фонды',
+  bonds: 'Облигации',
+  currencies: 'Валюты',
 };

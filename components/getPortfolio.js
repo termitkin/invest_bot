@@ -1,20 +1,40 @@
 const api = require('../utils/api');
-const currencySigns = require('../utils/dic');
-const sortPositionsByYield = require('../utils/sortPositionsByYield');
+const sortPortfolioByYield = require('../utils/sortPortfolioByYield');
+const groupPortfolioByType = require('../utils/groupPortfolioByType');
+const getPortfolioTextToSend = require('../utils/getPortfolioTextToSend');
 
 const getPortfolio = async () => {
   let textToSend = '';
-  const { positions } = await api.portfolio();
+  let { positions } = await api.portfolio();
 
-  const pos = await sortPositionsByYield(positions);
+  if (!positions.length) {
+    return 'В портфеле нет бумаг';
+  }
 
-  pos.forEach((item) => {
-    textToSend += `${item.ticker} ${item.name}: ${item.expectedYield.value} ${
-      currencySigns[item.expectedYield.currency]
-    }\n`;
-  });
+  const positionsCount = positions.length;
 
-  return textToSend;
+  positions = await sortPortfolioByYield(positions);
+  positions = groupPortfolioByType(positions);
+
+  if (positions.stocks.length) {
+    textToSend += getPortfolioTextToSend({ type: 'stocks', positions: [...positions.stocks] });
+  }
+
+  if (positions.etfs.length) {
+    textToSend += getPortfolioTextToSend({ type: 'etfs', positions: [...positions.etfs] });
+  }
+
+  if (positions.bonds.length) {
+    textToSend += getPortfolioTextToSend({ type: 'bonds', positions: [...positions.bonds] });
+  }
+
+  if (positions.currencies.length) {
+    textToSend += getPortfolioTextToSend({ type: 'currencies', positions: [...positions.currencies] });
+  }
+
+  textToSend += `\nВсего в портфеле ${positionsCount} бумаг\n`;
+
+  return textToSend.trim();
 };
 
 module.exports = getPortfolio;
