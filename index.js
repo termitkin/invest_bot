@@ -4,11 +4,10 @@ const getCurrency = require('./components/getCurrency');
 const getPortfolio = require('./components/getPortfolio');
 const getHelp = require('./components/getHelp');
 const getStockPrice = require('./components/getStockPrice');
-const sendMessage = require('./utils/sendMessage');
 const getOrders = require('./components/getOrders');
 const cancelOrder = require('./components/cancelOrder');
-const placeLimitOrder = require('./components/placeLimitOrder');
-const placeMarketOrder = require('./components/placeMarketOrder');
+const placeOrder = require('./components/placeOrder');
+const sendMessage = require('./utils/sendMessage');
 const currentDate = require('./utils/currentDate');
 const { APP_NAME, OWNER_ID, PORT } = require('./utils/CONSTANTS');
 
@@ -45,11 +44,11 @@ app.post('/', async (req, res) => {
     } else if (/^\/place_limit_order /.test(chatMessage)) {
       const limitOrderParams = chatMessage.replace(/\/place_limit_order /, '');
 
-      textToSend = await placeLimitOrder(limitOrderParams);
+      textToSend = await placeOrder({ orderParams: limitOrderParams, type: 'limit' });
     } else if (/^\/place_market_order /.test(chatMessage)) {
       const marketOrderParams = chatMessage.replace(/\/place_market_order /, '');
 
-      textToSend = await placeMarketOrder(marketOrderParams);
+      textToSend = await placeOrder({ orderParams: marketOrderParams, type: 'market' });
     } else if (chatMessage === '/get_usd') {
       textToSend = `Цена доллара ${await getCurrency('FIGI_USDRUB')} ₽`;
     } else if (chatMessage === '/get_eur') {
