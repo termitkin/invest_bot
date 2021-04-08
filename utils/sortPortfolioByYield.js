@@ -1,32 +1,25 @@
-const api = require('./api');
-const { FIGI_USDRUB, FIGI_EURRUB } = require('./CONSTANTS');
+/* eslint-disable no-restricted-syntax */
+/* eslint-disable no-await-in-loop */
+/* eslint-disable no-param-reassign */
+const convertExpectedYieldToRub = require('./convertExpectedYieldToRub')();
 
+/*
+Т.к. sort синхронный я не придумал ничего лучше, чем примиксовать к объекту поле valueInRub,
+отсортировать по нему массив, а затем удалить это поле. Поле удалил, чтобы вернуть из этой функции объекты с таким же
+набором полей, какие были переданы в эту функцию
+*/
 const sortPortfolioByYield = async (pos) => {
   const positions = pos.slice();
-  const usd = await api.orderbookGet({ figi: FIGI_USDRUB, depth: 1 });
-  const eur = await api.orderbookGet({ figi: FIGI_EURRUB, depth: 1 });
 
-  return positions.sort((a, b) => {
-    if (a.expectedYield.currency === b.expectedYield.currency) {
-      return b - a;
-    }
+  for (const position of positions) {
+    position.valueInRub = await convertExpectedYieldToRub(position.expectedYield);
+  }
 
-    let aInRub;
-    let bInRub;
+  positions.sort((a, b) => b.valueInRub - a.valueInRub);
 
-    if (a.expectedYield.currency === 'USD') {
-      aInRub = a.expectedYield.value * usd.lastPrice;
-    } else if (a.expectedYield.currency === 'EUR') {
-      aInRub = a.expectedYield.value * eur.lastPrice;
-    }
-
-    if (b.expectedYield.currency === 'USD') {
-      bInRub = b.expectedYield.value * usd.lastPrice;
-    } else if (b.expectedYield.currency === 'EUR') {
-      bInRub = b.expectedYield.value * eur.lastPrice;
-    }
-
-    return bInRub - aInRub;
+  return positions.map((position) => {
+    delete position.valueInRub;
+    return position;
   });
 };
 
