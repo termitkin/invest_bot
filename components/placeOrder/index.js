@@ -61,7 +61,7 @@ const placeOrder = async ({ orderParams, type }) => {
       `${dic.status}: ${dic[status]}\n` +
       `${dic.requestedLots}: ${requestedLots}\n` +
       `${dic.executedLots}: ${executedLots}\n` +
-      `${dic.message}: ${typeof message === 'undefined' ? '' : message}`
+      `${typeof message === 'undefined' ? '' : `${dic.message}: ${message}`}`
     );
   } catch (e) {
     console.log(JSON.stringify(e));
