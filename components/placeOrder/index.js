@@ -51,16 +51,15 @@ const placeOrder = async ({ orderParams, type }) => {
       );
     }
 
-    console.log(orderFields);
-
-    const { orderId, operation, status, requestedLots, executedLots } = orderFields;
+    const { orderId, operation, status, requestedLots, executedLots, message } = orderFields;
 
     return (
       `orderId: ${orderId}\n` +
       `operation: ${operation}\n` +
       `status: ${status}\n` +
       `requestedLots: ${requestedLots}\n` +
-      `executedLots: ${executedLots}`
+      `executedLots: ${executedLots}\n` +
+      `message: ${typeof message === 'undefined' ? '' : message}`
     );
   } catch (err) {
     console.log(`ERROR: ${JSON.stringify(err)}`);
