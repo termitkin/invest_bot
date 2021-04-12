@@ -1,7 +1,7 @@
-const api = require('../utils/api');
-const sortPortfolioByYield = require('../utils/sortPortfolioByYield');
-const groupPortfolioByType = require('../utils/groupPortfolioByType');
-const getPortfolioTextToSend = require('../utils/getPortfolioTextToSend');
+const api = require('../../utils/api');
+const sortPortfolioByYield = require('./utils/sortPortfolioByYield');
+const groupPortfolioByType = require('./utils/groupPortfolioByType');
+const getPortfolioTextToSend = require('./utils/getPortfolioTextToSend');
 
 const getPortfolio = async () => {
   let textToSend = '';

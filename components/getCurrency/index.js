@@ -1,5 +1,5 @@
-const api = require('../utils/api');
-const CONSTANTS = require('../utils/CONSTANTS');
+const api = require('../../utils/api');
+const CONSTANTS = require('../../utils/CONSTANTS');
 
 const getCurrency = async (currency) => {
   try {

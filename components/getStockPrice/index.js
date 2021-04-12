@@ -1,5 +1,5 @@
-const api = require('../utils/api');
-const currencySigns = require('../utils/dic');
+const api = require('../../utils/api');
+const currencySigns = require('../../utils/dic');
 
 const getStockPrice = async (stockTicker) => {
   try {

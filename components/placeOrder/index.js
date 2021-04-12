@@ -1,6 +1,6 @@
 /* eslint-disable comma-dangle */
-const api = require('../utils/api');
-const capitalizeFirstLetter = require('../utils/capitalizeFirstLetter');
+const api = require('../../utils/api');
+const capitalizeFirstLetter = require('./utils/capitalizeFirstLetter');
 
 const placeOrder = async ({ orderParams, type }) => {
   const params = orderParams.split(' ');
@@ -35,7 +35,7 @@ const placeOrder = async ({ orderParams, type }) => {
           figi,
           lots: Number.parseInt(lots, 10),
           operation: operationFromParams,
-          price: Number.parseInt(price, 10),
+          price: Number.parseFloat(price),
         })
       );
     }
@@ -51,6 +51,8 @@ const placeOrder = async ({ orderParams, type }) => {
       );
     }
 
+    console.log(orderFields);
+
     const { orderId, operation, status, requestedLots, executedLots } = orderFields;
 
     return (
@@ -64,6 +66,8 @@ const placeOrder = async ({ orderParams, type }) => {
     console.log(`ERROR: ${JSON.stringify(err)}`);
     if (err.payload.message === 'Недостаточно активов для сделки') {
       return 'Недостаточно активов для сделки';
+    } else if (err.payload.message === 'Instrument is disabled for trading') {
+      return 'Эта бумага сейчас не торгуется';
     }
     return 'Что-то пошло не так';
   }

@@ -1,7 +1,7 @@
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable no-await-in-loop */
 /* eslint-disable no-param-reassign */
-const convertExpectedYieldToRub = require('./convertExpectedYieldToRub')();
+const convertExpectedYieldToRub = require('../../../utils/convertExpectedYieldToRub')();
 
 /*
 Т.к. sort синхронный я не придумал ничего лучше, чем примиксовать к объекту поле valueInRub,

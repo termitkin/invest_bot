@@ -1,4 +1,4 @@
-const dic = require('./dic');
+const dic = require('../../../utils/dic');
 
 const getPortfolioTextToSend = ({ type, positions }) => {
   let textToSend = '';

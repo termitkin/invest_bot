@@ -1,7 +1,7 @@
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable no-await-in-loop */
-const api = require('../utils/api');
-const convertExpectedYieldToRub = require('../utils/convertExpectedYieldToRub')();
+const api = require('../../utils/api');
+const convertExpectedYieldToRub = require('../../utils/convertExpectedYieldToRub')();
 
 const getBalance = async () => {
   const { positions } = await api.portfolio();

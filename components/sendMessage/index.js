@@ -1,5 +1,5 @@
 const axios = require('axios');
-const buildUrl = require('./buildUrl');
+const buildUrl = require('./utils/buildUrl');
 
 const sendMessage = (text, chatId) => {
   const urlParams = new URLSearchParams({ chat_id: chatId, text }).toString();

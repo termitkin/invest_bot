@@ -1,5 +1,5 @@
 const { OWNER_ID } = require('../utils/CONSTANTS');
-const sendMessage = require('../utils/sendMessage');
+const sendMessage = require('../components/sendMessage');
 
 // eslint-disable-next-line consistent-return
 const auth = async (req, res, next) => {
