@@ -1,4 +1,5 @@
 const api = require('../../utils/api');
+const globalDic = require('../../utils/dic');
 const currencySigns = require('../../utils/dic');
 
 const getStockPrice = async (stockTicker) => {
@@ -12,7 +13,7 @@ const getStockPrice = async (stockTicker) => {
     if (e.payload && e.payload.message) {
       return e.payload.message;
     }
-    return 'Что-то пошло не так 🤷‍♂️';
+    return globalDic.somethingWentWrong;
   }
 };
 

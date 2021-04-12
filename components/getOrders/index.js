@@ -1,11 +1,12 @@
 const api = require('../../utils/api');
+const dic = require('./utils/dic');
 const currencySigns = require('../../utils/dic');
 
 const getOrders = async () => {
   const orders = await api.orders();
 
   if (!orders.length) {
-    return 'Активных заявок нет';
+    return dic.ordersNotFound;
   }
 
   let instrumentsByOrders = [];
@@ -53,13 +54,13 @@ const getOrders = async () => {
       const priceTotal = price * requestedCount;
 
       textToSend += `${ticker} ${name}\n`;
-      textToSend += `Запрошено лотов: ${requestedLots}, исполнено лотов: ${executedLots}\n`;
-      textToSend += `Цена за бумагу: ${price} ${cur}\n`;
-      textToSend += `Бумаг в лоте: ${lot}\n`;
-      textToSend += `Цена заявки: ${priceTotal} ${cur}\n`;
-      textToSend += `Операция: ${operation}, статус: ${status}, тип: ${type}\n`;
-      textToSend += `Минимальный шаг: ${minPriceIncrement}\n`;
-      textToSend += `Номер заявки: ${orderId}`;
+      textToSend += `${dic.requestedLots}: ${requestedLots}, ${dic.executedLots}: ${executedLots}\n`;
+      textToSend += `${dic.price}: ${price} ${cur}\n`;
+      textToSend += `${dic.lot}: ${lot}\n`;
+      textToSend += `${dic.priceTotal}: ${priceTotal} ${cur}\n`;
+      textToSend += `${dic.operation}: ${dic[operation]}, ${dic.status}: ${dic[status]}, ${dic.type}: ${dic[type]}\n`;
+      textToSend += `${dic.minPriceIncrement}: ${minPriceIncrement}\n`;
+      textToSend += `${dic.orderId}: ${orderId}`;
       textToSend += '\n\n';
     }
   });

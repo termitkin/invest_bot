@@ -1,4 +1,5 @@
 const api = require('../../utils/api');
+const dic = require('./utils/dic');
 const sortPortfolioByYield = require('./utils/sortPortfolioByYield');
 const groupPortfolioByType = require('./utils/groupPortfolioByType');
 const getPortfolioTextToSend = require('./utils/getPortfolioTextToSend');
@@ -8,7 +9,7 @@ const getPortfolio = async () => {
   let { positions } = await api.portfolio();
 
   if (!positions.length) {
-    return 'В портфеле нет бумаг';
+    return dic.positionsNotFound;
   }
 
   const positionsCount = positions.length;
@@ -32,7 +33,7 @@ const getPortfolio = async () => {
     textToSend += getPortfolioTextToSend({ type: 'currencies', positions: [...positions.currencies] });
   }
 
-  textToSend += `\nВсего в портфеле ${positionsCount} бумаг\n`;
+  textToSend += `\n${dic.positionsCount} ${positionsCount}\n`;
 
   return textToSend.trim();
 };

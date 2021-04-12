@@ -1,16 +1,18 @@
 /* eslint-disable comma-dangle */
 const api = require('../../utils/api');
+const dic = require('./utils/dic');
+const globalDic = require('../../utils/dic');
 const capitalizeFirstLetter = require('./utils/capitalizeFirstLetter');
 
 const placeOrder = async ({ orderParams, type }) => {
   const params = orderParams.split(' ');
 
   if (type === 'limit' && params.length !== 4) {
-    return 'Команде нужно передать 4 параметра: тикер, количество лотов, операцию и цену за лот';
+    return dic.limitOrderWrongParamsCount;
   }
 
   if (type === 'market' && params.length !== 3) {
-    return 'Команде нужно передать 3 параметра: тикер, количество лотов и операцию';
+    return dic.marketOrderWrongParamsCount;
   }
 
   // eslint-disable-next-line prefer-const
@@ -20,9 +22,9 @@ const placeOrder = async ({ orderParams, type }) => {
 
   try {
     figi = (await api.searchOne({ ticker })).figi;
-  } catch (err) {
-    console.log(JSON.stringify(err));
-    return `Инструмент с таким тикером "${ticker}" не найден`;
+  } catch (e) {
+    console.log(JSON.stringify(e));
+    return `${dic.instrumentNotFound} "${ticker}"`;
   }
 
   try {
@@ -54,19 +56,19 @@ const placeOrder = async ({ orderParams, type }) => {
     const { orderId, operation, status, requestedLots, executedLots, message } = orderFields;
 
     return (
-      `orderId: ${orderId}\n` +
-      `operation: ${operation}\n` +
-      `status: ${status}\n` +
-      `requestedLots: ${requestedLots}\n` +
-      `executedLots: ${executedLots}\n` +
-      `message: ${typeof message === 'undefined' ? '' : message}`
+      `${dic.orderId}: ${orderId}\n` +
+      `${dic.operation}: ${dic[operation]}\n` +
+      `${dic.status}: ${dic[status]}\n` +
+      `${dic.requestedLots}: ${requestedLots}\n` +
+      `${dic.executedLots}: ${executedLots}\n` +
+      `${dic.message}: ${typeof message === 'undefined' ? '' : message}`
     );
   } catch (e) {
     console.log(JSON.stringify(e));
     if (e.payload && e.payload.message) {
       return e.payload.message;
     }
-    return 'Что-то пошло не так 🤷‍♂️';
+    return globalDic.somethingWentWrong;
   }
 };
 

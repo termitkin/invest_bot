@@ -1,4 +1,6 @@
 const api = require('../../utils/api');
+const dic = require('./utils/dic');
+const globalDic = require('../../utils/dic');
 
 const cancelOrder = async (orderId) => {
   try {
@@ -8,9 +10,9 @@ const cancelOrder = async (orderId) => {
     if (e.payload && e.payload.message) {
       return e.payload.message;
     }
-    return 'Что-то пошло не так 🤷‍♂️';
+    return globalDic.somethingWentWrong;
   }
-  return `Заявка успешно отменена: "${orderId}"`;
+  return `${dic.orderCanceledSuccessfully}: "${orderId}"`;
 };
 
 module.exports = cancelOrder;

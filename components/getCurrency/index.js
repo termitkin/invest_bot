@@ -1,4 +1,5 @@
 const api = require('../../utils/api');
+const globalDic = require('../../utils/dic');
 const CONSTANTS = require('../../utils/CONSTANTS');
 
 const getCurrency = async (currency) => {
@@ -9,7 +10,7 @@ const getCurrency = async (currency) => {
     if (e.payload && e.payload.message) {
       return e.payload.message;
     }
-    return 'Что-то пошло не так 🤷‍♂️';
+    return globalDic.somethingWentWrong;
   }
 };
 
