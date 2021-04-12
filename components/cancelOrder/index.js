@@ -5,8 +5,8 @@ const cancelOrder = async (orderId) => {
     await api.cancelOrder({ orderId });
   } catch (e) {
     console.log(JSON.stringify(e));
-    if (/Cannot find order by id/.test(e.payload.message)) {
-      return `Не могу найти заявку с номером: "${e.payload.message.replace(/Cannot find order by id /, '')}"`;
+    if (e.payload && e.payload.message) {
+      return e.payload.message;
     }
     return 'Что-то пошло не так 🤷‍♂️';
   }

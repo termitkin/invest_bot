@@ -61,14 +61,12 @@ const placeOrder = async ({ orderParams, type }) => {
       `executedLots: ${executedLots}\n` +
       `message: ${typeof message === 'undefined' ? '' : message}`
     );
-  } catch (err) {
-    console.log(`ERROR: ${JSON.stringify(err)}`);
-    if (err.payload.message === 'Недостаточно активов для сделки') {
-      return 'Недостаточно активов для сделки';
-    } else if (err.payload.message === 'Instrument is disabled for trading') {
-      return 'Эта бумага сейчас не торгуется';
+  } catch (e) {
+    console.log(JSON.stringify(e));
+    if (e.payload && e.payload.message) {
+      return e.payload.message;
     }
-    return 'Что-то пошло не так';
+    return 'Что-то пошло не так 🤷‍♂️';
   }
 };
 

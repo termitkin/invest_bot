@@ -5,8 +5,11 @@ const getCurrency = async (currency) => {
   try {
     return (await api.orderbookGet({ figi: CONSTANTS[currency], depth: 1 })).lastPrice;
   } catch (e) {
-    console.log(e.payload.message);
-    return 'Что-то пошло не так 😢';
+    console.log(JSON.stringify(e));
+    if (e.payload && e.payload.message) {
+      return e.payload.message;
+    }
+    return 'Что-то пошло не так 🤷‍♂️';
   }
 };
 
