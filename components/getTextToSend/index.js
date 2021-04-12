@@ -1,3 +1,4 @@
+const dic = require('./utils/dic');
 const getBalance = require('../getBalance');
 const getCurrency = require('../getCurrency');
 const getPortfolio = require('../getPortfolio');
@@ -11,7 +12,7 @@ const getTextToSend = async (chatMessage) => {
   let textToSend;
 
   if (chatMessage === '/get_balance') {
-    textToSend = `Баланс ${await getBalance()} ₽`;
+    textToSend = `${dic.balance} ${await getBalance()} ₽`;
   } else if (chatMessage === '/get_portfolio') {
     textToSend = await getPortfolio();
   } else if (chatMessage === '/get_orders') {
@@ -29,9 +30,9 @@ const getTextToSend = async (chatMessage) => {
 
     textToSend = await placeOrder({ orderParams: marketOrderParams, type: 'market' });
   } else if (chatMessage === '/get_usd') {
-    textToSend = `Цена доллара ${await getCurrency('FIGI_USDRUB')} ₽`;
+    textToSend = `${dic.usdPrice} ${await getCurrency('FIGI_USDRUB')} ₽`;
   } else if (chatMessage === '/get_eur') {
-    textToSend = `Цена евро ${await getCurrency('FIGI_EURRUB')} ₽`;
+    textToSend = `${dic.eurPrice} ${await getCurrency('FIGI_EURRUB')} ₽`;
   } else if (chatMessage === '/start' || chatMessage === '/get_help') {
     textToSend = getHelp();
   } else if (/^\/get_stock_price/.test(chatMessage)) {
@@ -39,7 +40,7 @@ const getTextToSend = async (chatMessage) => {
 
     textToSend = await getStockPrice(stockTicker);
   } else {
-    textToSend = 'Неизвестная команда 🤷‍♂️';
+    textToSend = dic.commandNotFound;
   }
 
   return textToSend;
