@@ -2,7 +2,7 @@
   "name": "invest_bot",
   "version": "1.0.0",
   "description": "Получение некоторых данных с биржи через Тинькофф Инвестиции OpenAPI",
-  "main": "index.js",
+  "main": "app/index.js",
   "scripts": {},
   "keywords": [],
   "author": "termitkin",

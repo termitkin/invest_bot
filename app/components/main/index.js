@@ -12,7 +12,7 @@ const main = async (req, res) => {
     console.log(JSON.stringify(e));
   });
 
-  return res.status(200).send('ok');
+  return res.status(200).json(textToSend);
 };
 
 module.exports = main;
