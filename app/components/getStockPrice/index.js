@@ -10,8 +10,11 @@ const getStockPrice = async (stockTicker) => {
     return `${name}: ${lastPrice} ${currencySigns[currency]}`;
   } catch (e) {
     console.log(JSON.stringify(e));
-    if (e.payload && e.payload.message) {
-      return e.payload.message;
+
+    const errorMessage = e?.payload?.message;
+
+    if (errorMessage) {
+      return errorMessage;
     }
     return globalDic.somethingWentWrong;
   }

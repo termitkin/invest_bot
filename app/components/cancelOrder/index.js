@@ -7,9 +7,13 @@ const cancelOrder = async (orderId) => {
     await api.cancelOrder({ orderId });
   } catch (e) {
     console.log(JSON.stringify(e));
-    if (e.payload && e.payload.message) {
-      return e.payload.message;
+
+    const errorMessage = e?.payload?.message;
+
+    if (errorMessage) {
+      return errorMessage;
     }
+
     return globalDic.somethingWentWrong;
   }
   return `${dic.orderCanceledSuccessfully}: "${orderId}"`;

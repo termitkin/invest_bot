@@ -7,8 +7,11 @@ const getCurrency = async (currency) => {
     return (await api.orderbookGet({ figi: CONSTANTS[currency], depth: 1 })).lastPrice;
   } catch (e) {
     console.log(JSON.stringify(e));
-    if (e.payload && e.payload.message) {
-      return e.payload.message;
+
+    const errorMessage = e?.payload?.message;
+
+    if (errorMessage) {
+      return errorMessage;
     }
     return globalDic.somethingWentWrong;
   }
