@@ -1,4 +1,4 @@
-const currentDate = () => {
+const getCurrentDate = () => {
   const d = new Date();
   const hours = d.getHours() < 10 ? `0${d.getHours()}` : d.getHours();
   const minutes = d.getMinutes() < 10 ? `0${d.getMinutes()}` : d.getMinutes();
@@ -10,4 +10,4 @@ const currentDate = () => {
   return `${day}.${month}.${year} ${hours}:${minutes}:${seconds}`;
 };
 
-module.exports = currentDate;
+module.exports = getCurrentDate;
